@@ -1,3 +1,5 @@
+const process = require("../../utils/process");
+
 describe("for loops", () => {
     describe("variable scope - initialization", () => {
         test("\"var\" keyword creates variable with function scope", () => {
@@ -85,6 +87,7 @@ describe("loop performance", () => {
         let startTime = Date.now();
         for (const prop in testObj) {
             console.log("prop >", prop);
+            process();
         }
         let endTime = Date.now();
         const forInDuration = endTime - startTime;
@@ -93,7 +96,8 @@ describe("loop performance", () => {
         let i = 0;
         startTime = Date.now();
         while (i < props.length) {
-            console.log("prop >", props[i++]);
+            console.log("prop >", props[i]);
+            process(i++);
         }
         endTime = Date.now();
         const whileDuration = endTime - startTime;
