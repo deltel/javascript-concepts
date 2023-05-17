@@ -21,7 +21,7 @@ describe("for loops", () => {
 });
 
 describe("loop performance", () => {
-    describe("\"for in loops\" are the slowest", () => {
+    test("\"for in loops\" are the slowest", () => {
         const testObj = {
             "id": 1,
             "firstName": "Terry",
@@ -84,23 +84,23 @@ describe("loop performance", () => {
             "userAgent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/12.0.702.0 Safari/534.24"
         };
 
-        let startTime = Date.now();
+        let firstStartTime = Date.now();
         for (const prop in testObj) {
             console.log("prop >", prop);
             process();
         }
-        let endTime = Date.now();
-        const forInDuration = endTime - startTime;
+        let firstEndTime = Date.now();
+        const forInDuration = firstEndTime - firstStartTime;
 
         const props = Object.keys(testObj);
         let i = 0;
-        startTime = Date.now();
+        let secondStartTime = Date.now();
         while (i < props.length) {
             console.log("prop >", props[i]);
             process(i++);
         }
-        endTime = Date.now();
-        const whileDuration = endTime - startTime;
+        let secondEndTime = Date.now();
+        const whileDuration = secondEndTime - secondStartTime;
 
 
         expect(whileDuration).toBeLessThan(forInDuration);
