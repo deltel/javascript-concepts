@@ -1,18 +1,17 @@
-const process = require("../../utils/process");
-const range = require("../../utils/range");
+const process = require('../../utils/process');
+const range = require('../../utils/range');
 
-describe("loops", () => {
-    describe("work done per iteration", () => {
+describe('loops', () => {
+    describe('work done per iteration', () => {
         const items = range(10000000);
-        describe("for loop", () => {
-            test("takes longer when a property look up is done in the initialization block", () => {
+        describe('for loop', () => {
+            test('takes longer when a property look up is done in the initialization block', () => {
                 let firstStartTime = Date.now();
                 for (let i = 0; i < items.length; i++) {
                     process(items[i]);
                 }
                 let firstEndTime = Date.now();
                 const firstDuration = firstEndTime - firstStartTime;
-
 
                 let secondStartTime = Date.now();
                 for (let i = 0, len = items.length; i < len; i++) {
@@ -25,8 +24,8 @@ describe("loops", () => {
             });
         });
 
-        describe("while loop", () => {
-            test("takes longer when a property look up is done in the initialization block", () => {
+        describe('while loop', () => {
+            test('takes longer when a property look up is done in the initialization block', () => {
                 let i = 0;
                 let firstStartTime = Date.now();
                 while (i < items.length) {
@@ -48,8 +47,8 @@ describe("loops", () => {
             });
         });
 
-        describe("do while loop", () => {
-            test("takes longer when a property look up is done in the initialization block", () => {
+        describe('do while loop', () => {
+            test('takes longer when a property look up is done in the initialization block', () => {
                 let i = 0;
                 let firstStartTime = Date.now();
                 do {

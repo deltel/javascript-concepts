@@ -7,4 +7,4 @@ module.exports = function process(num = 999) {
     result = result ** 2;
     result = result ** 3;
     return result;
-}
+};
