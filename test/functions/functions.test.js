@@ -85,4 +85,51 @@ describe('functions', () => {
             }
         });
     });
+
+    describe('scope', () => {
+        test('functions have access to the outer scope', () => {
+            var x = 'x';
+            function name() {
+                return 'Jane';
+            }
+
+            function scope() {
+                return x;
+            }
+
+            function secondScope() {
+                return name();
+            }
+
+            expect(scope()).toBe('x');
+            expect(secondScope()).toBe('Jane');
+        });
+
+        test("functions do not have access to an inner function's scope", () => {
+            function outer() {
+                function secondScope() {
+                    var person = 'Jane';
+                }
+
+                return person;
+            }
+
+            expect(() => outer()).toThrow(ReferenceError);
+        });
+    });
+
+    describe('closure', () => {
+        test('the inner and outer scope form the closure', () => {
+            function outer(x) {
+                function inner(y) {
+                    return x + y;
+                }
+
+                return inner;
+            }
+
+            expect(outer(5)(7)).toBe(12);
+            expect(outer(7)(14)).toBe(21);
+        });
+    });
 });
