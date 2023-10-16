@@ -132,4 +132,19 @@ describe('functions', () => {
             expect(outer(7)(14)).toBe(21);
         });
     });
+
+    describe('scope chain', () => {
+        test('is resolved recursively starting with the inner most scope', () => {
+            function outer() {
+                var x = 'x';
+                function inner(x) {
+                    return x;
+                }
+
+                return inner;
+            }
+
+            expect(outer()('y')).toBe('y');
+        });
+    });
 });
